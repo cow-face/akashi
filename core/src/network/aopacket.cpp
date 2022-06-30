@@ -17,6 +17,10 @@
 //////////////////////////////////////////////////////////////////////////////////////
 #include "include/network/aopacket.h"
 
+#include "include/packet/packet_factory.h"
+#include "include/packet/packet_hi.h"
+#include "include/packet/packet_id.h"
+
 AOPacket::AOPacket(QStringList p_contents) :
     m_content(p_contents),
     m_escaped(false)
@@ -86,4 +90,9 @@ void AOPacket::setPacketEscaped(bool f_packet_state)
 bool AOPacket::isPacketEscaped()
 {
     return m_escaped;
+}
+
+void AOPacket::registerPackets() {
+    PacketFactory::registerClass<PacketHI>("HI");
+    PacketFactory::registerClass<PacketID>("ID");
 }

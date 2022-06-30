@@ -179,7 +179,7 @@ void AOClient::clientDisconnected()
 void AOClient::handlePacket(AOPacket *packet)
 {
 #ifdef NET_DEBUG
-    qDebug() << "Received packet:" << packet.getHeader() << ":" << packet.getContent() << "args length:" << packet.getContent().length();
+    qDebug() << "Received packet:" << packet->getPacketInfo().header << ":" << packet->getContent() << "args length:" << packet->getContent().length();
 #endif
     AreaData *l_area = server->getAreaById(m_current_area);
 
@@ -200,7 +200,7 @@ void AOClient::handlePacket(AOPacket *packet)
 
     if (packet->getContent().length() < packet->getPacketInfo().min_args) {
 #ifdef NET_DEBUG
-        qDebug() << "Invalid packet args length. Minimum is" << packet->getPacketInfo().min_args << "but only" << packet.getContent().length() << "were given.";
+        qDebug() << "Invalid packet args length. Minimum is" << packet->getPacketInfo().min_args << "but only" << packet->getContent().length() << "were given.";
 #endif
         return;
     }
@@ -400,7 +400,7 @@ void AOClient::fullArup()
 void AOClient::sendPacket(AOPacket *packet)
 {
 #ifdef NET_DEBUG
-    qDebug() << "Sent packet:" << packet.getHeader() << ":" << packet.getContent();
+    qDebug() << "Sent packet:" << packet->getPacketInfo().header << ":" << packet->getContent();
 #endif
     m_socket->write(packet);
 }

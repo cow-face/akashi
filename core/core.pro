@@ -22,7 +22,7 @@ DESTDIR = $$PWD/../bin
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Enable this to print network messages to the console
-#DEFINES += NET_DEBUG
+DEFINES += NET_DEBUG
 
 SOURCES += \
     src/acl_roles_handler.cpp \
@@ -51,7 +51,9 @@ SOURCES += \
     src/logger/writer_full.cpp \
     src/music_manager.cpp \
     src/packet/packet_factory.cpp \
-    src/packet/packet_generic.cpp
+    src/packet/packet_generic.cpp \
+    src/packet/packet_hi.cpp \
+    src/packet/packet_id.cpp
 
 HEADERS += include/aoclient.h \
     include/acl_roles_handler.h \
@@ -73,4 +75,6 @@ HEADERS += include/aoclient.h \
     include/music_manager.h \
     include/packet/packet_factory.h \
     include/packet/packet_info.h \
-    include/packet/packet_generic.h
+    include/packet/packet_generic.h \
+    include/packet/packet_hi.h \
+    include/packet/packet_id.h

@@ -115,6 +115,8 @@ class AOPacket
     virtual void handlePacket(AreaData* area, AOClient& client) const = 0;
     virtual bool validatePacket() const = 0;
 
+    static void registerPackets();
+
   protected:
     /**
      * @brief The contents of the packet.
@@ -132,6 +134,8 @@ class AOPacket
      * @details Note : This is due to AOs inability to determine the packet length, making it read forever otherwise.
      */
     const QString packetFinished = "%";
+
+    const QString header;
 };
 
 #endif // PACKET_MANAGER_H

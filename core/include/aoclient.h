@@ -324,6 +324,26 @@ class AOClient : public QObject
     bool m_is_spectator = true;
 
     /**
+     * @brief The hardware ID of the client.
+     *
+     * @details Generated based on the client's own supplied hardware ID.
+     * The client supplied hardware ID is generally a machine unique ID.
+     */
+    QString m_hwid;
+
+    /**
+     * @brief The network socket used by the client. Can either be a Websocket or TCP Socket.
+     */
+    NetworkSocket *m_socket;
+
+    /**
+     * @brief The IPID of the client.
+     *
+     * @details Generated based on the client's IP, but cannot be reversed to identify the client's IP.
+     */
+    QString m_ipid;
+
+    /**
      * @brief Checks if the client's ACL role has permission for the given permission.
      *
      * @param f_permission The permission flags.
@@ -398,11 +418,6 @@ class AOClient : public QObject
     void joined();
 
   private:
-    /**
-     * @brief The network socket used by the client. Can either be a Websocket or TCP Socket.
-     */
-    NetworkSocket *m_socket;
-
     /**
      * @brief A pointer to the Server, used for updating server variables that depend on the client (e.g. amount of players in an area).
      */
@@ -2005,21 +2020,6 @@ class AOClient : public QObject
      * @see #partial_packet
      */
     bool is_partial;
-
-    /**
-     * @brief The hardware ID of the client.
-     *
-     * @details Generated based on the client's own supplied hardware ID.
-     * The client supplied hardware ID is generally a machine unique ID.
-     */
-    QString m_hwid;
-
-    /**
-     * @brief The IPID of the client.
-     *
-     * @details Generated based on the client's IP, but cannot be reversed to identify the client's IP.
-     */
-    QString m_ipid;
 
     /**
      * @brief The time in seconds since the client last sent a Witness Testimony / Cross Examination
